@@ -12,14 +12,14 @@
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*"/>
-					<RowDefinition Height="2*"/>
+					<RowDefinition Height="1.8*"/>
 					<RowDefinition Height="*"/>
-					<RowDefinition Height="*"/>
+					<RowDefinition Height="0.6*"/>
 				</Grid.RowDefinitions>
 
 
 				<Frame BorderColor="Black"
-				 Padding="5" Margin="5,0,5,0">
+				 Padding="5" Margin="5,5,5,0">
 					<Grid >
 						<Grid.RowDefinitions>
 							<RowDefinition Height="*"/>
@@ -27,9 +27,18 @@
 							<RowDefinition Height="*"/>
 						</Grid.RowDefinitions>
 						<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0" FontAttributes="Bold" FontSize="24" FontFamily="Helvetica" />
-						<Label Text="{Binding StipendioNetto}" TextColor="Black" Grid.Row="1" FontAttributes="Bold" FontSize="52" FontFamily="Helvetica" HorizontalTextAlignment="End" />
+						<Grid Grid.Row="1">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="2"/>
+							</Grid.RowDefinitions>
+							
+							<Label Text="{Binding StipendioNetto}" TextColor="Black" Grid.Row="0" FontAttributes="Bold" FontSize="52" FontFamily="Helvetica" HorizontalTextAlignment="End" />
+							<Line Stroke="Black" StrokeThickness="4" X2="230" Grid.Row="1" Margin="40,0,0,0" HorizontalOptions="End" />
+						</Grid>
+					
 
-						<button:SfButton Grid.Row="2"  BackgroundColor="Transparent"  CornerRadius="5" HorizontalOptions="Start" >
+						<button:SfButton Grid.Row="2" BackgroundColor="Transparent"  CornerRadius="5" HorizontalOptions="Start" >
 							<button:SfButton.Content>
 								<Grid HeightRequest="45" WidthRequest="50" Margin="15">
 									<Image Source="pdf.png" />
@@ -40,15 +49,13 @@
 					</Grid>
 				</Frame>
 
-				<Grid  Grid.Row="1">
+				<Grid Grid.Row="1">
 					<Frame BorderColor="Black"
 					Padding="5" Margin="5,0,5,0">
 
 						<!--STIPENDIO-->
-						<chart:SfChart x:Name="ChartStipendio" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
-							<chart:SfChart.Title>
-								<chart:ChartTitle Text="Stipendio"  />
-							</chart:SfChart.Title>
+						<chart:SfChart x:Name="ChartStipendio" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+							
 							<chart:SfChart.BindingContext>
 								<viewmodels:HomeViewModel/>
 							</chart:SfChart.BindingContext>
@@ -56,11 +63,13 @@
 								<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
 							</chart:SfChart.Legend>
 							<chart:SfChart.Series>
-								<chart:DoughnutSeries  ExplodeIndex="{Binding StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio" ItemsSource="{Binding StipendioVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="true" StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="true" EnableDataPointSelection="true">
+								<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.6" ExplodeIndex="{Binding StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio" ItemsSource="{Binding StipendioVM.DoughnutSeriesData}"
+															 XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="true" StrokeWidth="1" StrokeColor="White"
+															 ExplodeOnTouch="true" EnableDataPointSelection="true" TrackBorderWidth="0.1">
 									<chart:DoughnutSeries.DataMarker>
 										<chart:ChartDataMarker ShowLabel="True">
 											<chart:ChartDataMarker.LabelStyle>
-												<chart:DataMarkerLabelStyle LabelFormat="###,###.###€"/>
+												<chart:DataMarkerLabelStyle LabelPosition="Center" FontSize="20" LabelFormat="###,###.###€"/>
 											</chart:ChartDataMarker.LabelStyle>
 										</chart:ChartDataMarker>
 									</chart:DoughnutSeries.DataMarker>
@@ -69,8 +78,8 @@
 									</chart:DoughnutSeries.ColorModel>
 									<chart:DoughnutSeries.CenterView>
 										<StackLayout x:Name="stackStipendio" Orientation ="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-											<Label Text="Lordo" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-											<Label Text="{Binding BindingContext.StipendioVM.Sum}" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
+											<Label Text="Lordo" TextColor="Black" FontAttributes="Bold" FontSize="24" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
+											<Label Text="{Binding BindingContext.StipendioVM.StringSum}" TextColor="Black" FontAttributes="Bold" FontSize="20" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
 										</StackLayout>
 									</chart:DoughnutSeries.CenterView>
 								</chart:DoughnutSeries>
@@ -92,7 +101,7 @@
 
 						<!--FERIE-->
 						<Grid >
-							<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
+							<chart:SfChart  x:Name="ChartFerie" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
 								<chart:SfChart.Title>
 									<chart:ChartTitle Text="Ferie"  />
 								</chart:SfChart.Title>
@@ -103,11 +112,11 @@
 									<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
 								</chart:SfChart.Legend>
 								<chart:SfChart.Series>
-									<chart:DoughnutSeries  ExplodeIndex="{Binding FerieVM.SelectedIndex}" x:Name="doughnutSeriesFerie" ItemsSource="{Binding FerieVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
+									<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding FerieVM.SelectedIndex}" x:Name="doughnutSeriesFerie" ItemsSource="{Binding FerieVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
 										<chart:DoughnutSeries.DataMarker>
 											<chart:ChartDataMarker ShowLabel="True">
 												<chart:ChartDataMarker.LabelStyle>
-													<chart:DataMarkerLabelStyle />
+													<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" />
 												</chart:ChartDataMarker.LabelStyle>
 											</chart:ChartDataMarker>
 										</chart:DoughnutSeries.DataMarker>
@@ -138,11 +147,11 @@
 									<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
 								</chart:SfChart.Legend>
 								<chart:SfChart.Series>
-									<chart:DoughnutSeries  ExplodeIndex="{Binding PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi" ItemsSource="{Binding PermessiVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
+									<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi" ItemsSource="{Binding PermessiVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
 										<chart:DoughnutSeries.DataMarker>
 											<chart:ChartDataMarker ShowLabel="True">
 												<chart:ChartDataMarker.LabelStyle>
-													<chart:DataMarkerLabelStyle />
+													<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer"/>
 												</chart:ChartDataMarker.LabelStyle>
 											</chart:ChartDataMarker>
 										</chart:DoughnutSeries.DataMarker>
@@ -165,8 +174,29 @@
 
 
 				<Frame BorderColor="Black" Grid.Row="3"
-					Padding="5" Margin="5,0,5,0">
-					<Label BackgroundColor="Green" Text="Buoni Pasto"/>
+					Padding="5" Margin="5,0,5,5">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="*"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+
+							<Label Text="{Binding BuoniPasto}" VerticalTextAlignment="End" HorizontalTextAlignment="Center" FontSize="50"/>
+							<Label Grid.Row="1" Text="Buoni pasto consegnati" FontSize="22"  HorizontalTextAlignment="Center"/>
+						</Grid>
+
+						<Grid Grid.Column="1" BackgroundColor="Green"> 
+							
+						</Grid>
+
+					</Grid>
 				</Frame>
 
 			</Grid>

@@ -33,6 +33,7 @@ namespace Salarya.ViewModels
 
 			MeseCorrente = "Aprile 2021";
 			StipendioNetto = "1658.69 €";
+			BuoniPasto = 22;
 		}
 
 		private PermessiOreViewModel _permessiVM;
@@ -40,6 +41,7 @@ namespace Salarya.ViewModels
 		private PermessiOreViewModel _stipendioVM;
 		private string _meseCorrente;
 		private string _stipendioNetto;
+		private int _buoniPasto;
 
 		public PermessiOreViewModel PermessiVM
 		{
@@ -84,6 +86,15 @@ namespace Salarya.ViewModels
 			set
 			{
 				_stipendioNetto = value;
+				OnPropertyChanged(nameof(StipendioNetto));
+			}
+		}
+		public int BuoniPasto
+		{
+			get => _buoniPasto;
+			set
+			{
+				_buoniPasto = value;
 				OnPropertyChanged(nameof(StipendioNetto));
 			}
 		}

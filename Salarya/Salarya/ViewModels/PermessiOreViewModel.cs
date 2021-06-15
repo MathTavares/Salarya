@@ -21,6 +21,7 @@ namespace Salarya.ViewModels
 		private string _selectedItemName;
 		private double _selectedItemsPercentage;
 		private double _sum;
+		private string _stringSum;
 
 		public string SelectedItemName
 		{
@@ -53,6 +54,16 @@ namespace Salarya.ViewModels
 			}
 		}
 
+		public string StringSum
+		{
+			get { return _stringSum; }
+			set
+			{
+				_stringSum = value;
+				OnPropertyChanged(nameof(StringSum));
+			}
+		}
+
 		public int SelectedIndex
 		{
 			get { return selectedIndex; }
@@ -64,9 +75,10 @@ namespace Salarya.ViewModels
 				SelectedItemName = DoughnutSeriesData[selectedIndex].Name;
 
 				Sum = DoughnutSeriesData.Sum(item => item.Value);
+				StringSum = $"{Sum} €";
 				var selectedValue = DoughnutSeriesData[selectedIndex].Value;
 
-				SelectedItemsPercentage = (selectedValue / Sum) * 100;
+				SelectedItemsPercentage = selectedValue / Sum * 100;
 				SelectedItemsPercentage = Math.Floor(SelectedItemsPercentage * 100) / 100;
 			}
 		}
