@@ -18,27 +18,27 @@ namespace Salarya.Views
 			InitializeComponent();
 		}
 
-		protected override void OnSizeAllocated(double width, double height)
-		{
-			base.OnSizeAllocated(width, height);
-			if ((Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS))
-			{
-				if (height > 0 && width > 0)
-				{
-					if (height > width)
-					{
-						doughnutSeriesStipendio.CenterView = stackStipendio;
-						ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
-						ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
-					}
-					else
-					{
-						doughnutSeriesStipendio.CenterView = stackStipendio;
-						ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
-						ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
-					}
-				}
-			}
-		}
+		//protected override void OnSizeAllocated(double width, double height)
+		//{
+		//	base.OnSizeAllocated(width, height);
+		//	if ((Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS))
+		//	{
+		//		if (height > 0 && width > 0)
+		//		{
+		//			if (height > width)
+		//			{
+		//				doughnutSeriesStipendio.CenterView = stackStipendio;
+		//				ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
+		//				ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
+		//			}
+		//			else
+		//			{
+		//				doughnutSeriesStipendio.CenterView = stackStipendio;
+		//				ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
+		//				ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
+		//			}
+		//		}
+		//	}
+		//}
 	}
 }
