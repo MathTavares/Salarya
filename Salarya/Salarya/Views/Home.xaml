@@ -84,7 +84,7 @@
 								<Grid >
 									<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 										<chart:SfChart.Title>
-											<chart:ChartTitle Text="Ferie"  />
+											<chart:ChartTitle Text="Ferie" FontSize="24" TextAlignment="Center"/>
 										</chart:SfChart.Title>
 										<chart:SfChart.BindingContext>
 											<viewmodels:HomeViewModel/>
@@ -121,13 +121,13 @@
 								<Grid Grid.Column="1" >
 									<chart:SfChart x:Name="ChartPermessi" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
 										<chart:SfChart.Title>
-											<chart:ChartTitle Text="Permessi"  />
+											<chart:ChartTitle Text="Permessi" FontSize="24"/>
 										</chart:SfChart.Title>
 										<chart:SfChart.BindingContext>
 											<viewmodels:HomeViewModel/>
 										</chart:SfChart.BindingContext>
 										<chart:SfChart.Legend>
-											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
+											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" ItemMargin="4"  DockPosition="Bottom" />
 										</chart:SfChart.Legend>
 										<chart:SfChart.Series>
 											<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi"

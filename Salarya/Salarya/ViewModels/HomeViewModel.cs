@@ -34,11 +34,17 @@ namespace Salarya.ViewModels
 
 		}
 
+		private void UpdateCurrentData()
+		{
+			FerieSeriesData = CurrentItem.FerieVM.DoughnutSeriesData;
+		}
+
 
 		private string _meseCorrente;
 		private List<BustaMensile> _listOfYear;
 		private ObservableCollection<MensilitaViewModel> _mensilitaViewModels;
 		private MensilitaViewModel _currentItem;
+		private ObservableCollection<ChartDataModel> _ferieSeriesData;
 
 		public string MeseCorrente
 		{
@@ -54,9 +60,22 @@ namespace Salarya.ViewModels
 			get => _mensilitaViewModels;
 			set
 			{
+				if(_mensilitaViewModels != null)
+				{
+					_mensilitaViewModels.CollectionChanged -= _mensilitaViewModels_CollectionChanged;
+				}
 				_mensilitaViewModels = value;
+				if (_mensilitaViewModels != null)
+				{
+					_mensilitaViewModels.CollectionChanged += _mensilitaViewModels_CollectionChanged;
+				}
 				OnPropertyChanged(nameof(MensilitaViewModels));
 			}
+		}
+
+		private void _mensilitaViewModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			OnCollectionChanged(() => MensilitaViewModels);
 		}
 
 		public MensilitaViewModel CurrentItem
@@ -65,6 +84,17 @@ namespace Salarya.ViewModels
 			set
 			{
 				_currentItem = value;
+				UpdateCurrentData();
+				OnPropertyChanged(nameof(CurrentItem));
+			}
+		}
+
+		public ObservableCollection<ChartDataModel> FerieSeriesData
+		{
+			get => _ferieSeriesData;
+			set
+			{
+				_ferieSeriesData = value;
 				OnPropertyChanged(nameof(CurrentItem));
 			}
 		}

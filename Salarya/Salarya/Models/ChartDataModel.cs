@@ -1,19 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace Salarya.Models
 {
-	public class ChartDataModel
+	public class ChartDataModel : INotifyPropertyChanged
 	{
-		public string Name { get; set; }
+		private string _name;
+		private double _value;
+		public string Name 
+		{
+			get => _name;
+			set
+			{
+				_name = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+			}
+		}
 
-		public double Value { get; set; }
+		public double Value
+		{
+			get => _value;
+			set
+			{
+				_value = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Value"));
+			}
+		}
+
 
 		public ChartDataModel(string name, double value)
 		{
 			Name = name;
 			Value = value;
 		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
 	}
 }

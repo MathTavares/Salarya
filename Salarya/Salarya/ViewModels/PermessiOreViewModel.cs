@@ -10,7 +10,7 @@ namespace Salarya.ViewModels
 {
 	public class PermessiOreViewModel : BaseViewModel, INotifyPropertyChanged
 	{
-		public ObservableCollection<ChartDataModel> DoughnutSeriesData { get; set; }
+		
 
 		public PermessiOreViewModel(ObservableCollection<ChartDataModel> data)
 		{
@@ -22,10 +22,11 @@ namespace Salarya.ViewModels
 		private double _selectedItemsPercentage;
 		private double _sum;
 		private string _stringSum;
+		private ObservableCollection<ChartDataModel> _doughnutSeriesData;
 
 		public string SelectedItemName
 		{
-			get { return _selectedItemName; }
+			get => _selectedItemName;
 			set
 			{
 				_selectedItemName = value;
@@ -36,7 +37,7 @@ namespace Salarya.ViewModels
 
 		public double SelectedItemsPercentage
 		{
-			get { return _selectedItemsPercentage; }
+			get => _selectedItemsPercentage;
 			set
 			{
 				_selectedItemsPercentage = value;
@@ -46,7 +47,7 @@ namespace Salarya.ViewModels
 
 		public double Sum
 		{
-			get { return _sum; }
+			get => _sum;
 			set
 			{
 				_sum = value;
@@ -56,7 +57,7 @@ namespace Salarya.ViewModels
 
 		public string StringSum
 		{
-			get { return _stringSum; }
+			get => _stringSum;
 			set
 			{
 				_stringSum = value;
@@ -82,5 +83,29 @@ namespace Salarya.ViewModels
 				SelectedItemsPercentage = Math.Floor(SelectedItemsPercentage * 100) / 100;
 			}
 		}
+
+		public ObservableCollection<ChartDataModel> DoughnutSeriesData
+		{
+			get => _doughnutSeriesData;
+			set
+			{
+				if (_doughnutSeriesData != null)
+				{
+					_doughnutSeriesData.CollectionChanged -= _doughnutSeriesDataViewModels_CollectionChanged;
+				}
+				_doughnutSeriesData = value;
+				if (_doughnutSeriesData != null)
+				{
+					_doughnutSeriesData.CollectionChanged += _doughnutSeriesDataViewModels_CollectionChanged;
+				}
+				OnPropertyChanged(nameof(DoughnutSeriesData));
+			}
+		}
+
+		private void _doughnutSeriesDataViewModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			OnCollectionChanged(() => DoughnutSeriesData);
+		}
+
 	}
 }

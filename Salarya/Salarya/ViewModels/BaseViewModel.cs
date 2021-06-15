@@ -2,13 +2,15 @@
 using Salarya.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace Salarya.ViewModels
 {
-	public class BaseViewModel : INotifyPropertyChanged
+	public class BaseViewModel : INotifyPropertyChanged, INotifyCollectionChanged
 	{
 		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
@@ -49,6 +51,14 @@ namespace Salarya.ViewModels
 
 			changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
+
+		public event NotifyCollectionChangedEventHandler CollectionChanged;
+		protected virtual void OnCollectionChanged<T>(Expression<Func<T>> e)
+      {
+            var handler = CollectionChanged;
+
+            handler?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add));
+      }
 		#endregion
 	}
 }
