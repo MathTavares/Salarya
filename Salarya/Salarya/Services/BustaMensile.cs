@@ -14,10 +14,10 @@ namespace Salarya.Services
       public string Mese { get; set; }
 
       [JsonProperty("Netto")]
-      public decimal Netto { get; set; }
+      public double Netto { get; set; }
 
       [JsonProperty("Lordo")]
-      public decimal Lordo { get; set; }
+      public double Lordo { get; set; }
 
       [JsonProperty("FerieDovute")]
       public int FerieDovute { get; set; }

@@ -5,71 +5,40 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using Salarya.Models;
+using Salarya.Services;
+using System.Threading.Tasks;
 
 namespace Salarya.ViewModels
 {
 	public class HomeViewModel : BaseViewModel, INotifyPropertyChanged
 	{
-		public ObservableCollection<ChartDataModel> DoughnutSeriesData { get; set; }
-
 		public HomeViewModel()
 		{
-			StipendioVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
-				{
-					 new ChartDataModel("Importo netto", 1650.42),
-					 new ChartDataModel("Addizionali", 200),
-					 new ChartDataModel("Trattenute", 150.42),
-			  });
-			PermessiVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
-				{
-					 new ChartDataModel("ore maturate", 180),
-					 new ChartDataModel("ore godute", 15),
-			  });
-			FerieVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
-				{
-					 new ChartDataModel("gg maturati", 45),
-					 new ChartDataModel("gg goduti", 3),
-			  });
-
-			MeseCorrente = "Aprile 2021";
-			StipendioNetto = "1658.69 €";
-			BuoniPasto = 22;
+			Task.Run(async () => await GetYear("2021"));
 		}
 
-		private PermessiOreViewModel _permessiVM;
-		private PermessiOreViewModel _ferieVM;
-		private PermessiOreViewModel _stipendioVM;
+		public async Task GetYear(string url)
+		{
+			using (var restService = new RestService())
+			{
+				_listOfYear = await restService.GetRepositoriesAsync(url);
+				MensilitaViewModels = new ObservableCollection<MensilitaViewModel>();
+				foreach (var mese in _listOfYear)
+				{
+					MensilitaViewModels.Add(new MensilitaViewModel(mese));
+				}
+
+				CurrentItem = MensilitaViewModels?.FirstOrDefault();
+				OnPropertyChanged("CurrentItem");
+			}
+
+		}
+
+
 		private string _meseCorrente;
-		private string _stipendioNetto;
-		private int _buoniPasto;
-
-		public PermessiOreViewModel PermessiVM
-		{
-			get => _permessiVM;
-			set
-			{
-				_permessiVM = value;
-				OnPropertyChanged(nameof(PermessiVM));
-			}
-		}
-		public PermessiOreViewModel FerieVM
-		{
-			get => _ferieVM;
-			set
-			{
-				_ferieVM = value;
-				OnPropertyChanged(nameof(FerieVM));
-			}
-		}
-		public PermessiOreViewModel StipendioVM
-		{
-			get => _stipendioVM;
-			set
-			{
-				_stipendioVM = value;
-				OnPropertyChanged(nameof(StipendioVM));
-			}
-		}
+		private List<BustaMensile> _listOfYear;
+		private ObservableCollection<MensilitaViewModel> _mensilitaViewModels;
+		private MensilitaViewModel _currentItem;
 
 		public string MeseCorrente
 		{
@@ -80,22 +49,23 @@ namespace Salarya.ViewModels
 				OnPropertyChanged(nameof(MeseCorrente));
 			}
 		}
-		public string StipendioNetto
+		public ObservableCollection<MensilitaViewModel> MensilitaViewModels
 		{
-			get => _stipendioNetto;
+			get => _mensilitaViewModels;
 			set
 			{
-				_stipendioNetto = value;
-				OnPropertyChanged(nameof(StipendioNetto));
+				_mensilitaViewModels = value;
+				OnPropertyChanged(nameof(MensilitaViewModels));
 			}
 		}
-		public int BuoniPasto
+
+		public MensilitaViewModel CurrentItem
 		{
-			get => _buoniPasto;
+			get => _currentItem;
 			set
 			{
-				_buoniPasto = value;
-				OnPropertyChanged(nameof(StipendioNetto));
+				_currentItem = value;
+				OnPropertyChanged(nameof(CurrentItem));
 			}
 		}
 
