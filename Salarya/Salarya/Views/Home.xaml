@@ -7,8 +7,25 @@
 	<ContentPage.BindingContext>
 		<viewmodels:HomeViewModel/>
 	</ContentPage.BindingContext>
-	<ContentPage.Content>
-		<Grid>
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<chart:ChartColorCollection x:Key="ColorPalette1">
+				<Color>Green</Color>
+				<Color>#FF0000</Color>
+			</chart:ChartColorCollection>
+			<chart:ChartColorCollection x:Key="ColorPalette2">
+				<Color>#0769AA</Color>
+				<Color>#FF0000</Color>
+			</chart:ChartColorCollection>
+			<chart:ChartColorCollection x:Key="ColorPalette3">
+				<Color>#FFBA00</Color>
+				<Color>#0769AA</Color>
+				<Color>#FF0000</Color>
+			</chart:ChartColorCollection>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+	<ContentPage.Content >
+		<Grid BackgroundColor="#F0F0F0">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
@@ -73,12 +90,12 @@
 										<chart:DoughnutSeries.DataMarker>
 											<chart:ChartDataMarker ShowLabel="True">
 												<chart:ChartDataMarker.LabelStyle>
-													<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" />
+													<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" TextColor="Black" />
 												</chart:ChartDataMarker.LabelStyle>
 											</chart:ChartDataMarker>
 										</chart:DoughnutSeries.DataMarker>
 										<chart:DoughnutSeries.ColorModel>
-											<chart:ChartColorModel Palette="Natural" />
+											<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette1}" />
 										</chart:DoughnutSeries.ColorModel>
 										<!--<chart:DoughnutSeries.CenterView>
 											<StackLayout x:Name="stackFerie" Orientation ="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -108,12 +125,12 @@
 										<chart:DoughnutSeries.DataMarker>
 											<chart:ChartDataMarker ShowLabel="True">
 												<chart:ChartDataMarker.LabelStyle>
-													<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer"/>
+													<chart:DataMarkerLabelStyle FontSize="18" TextColor="Black" LabelPosition="Outer"/>
 												</chart:ChartDataMarker.LabelStyle>
 											</chart:ChartDataMarker>
 										</chart:DoughnutSeries.DataMarker>
 										<chart:DoughnutSeries.ColorModel>
-											<chart:ChartColorModel Palette="Natural" />
+										<chart:ChartColorModel Palette="Custom"  CustomBrushes="{StaticResource ColorPalette2}" />
 										</chart:DoughnutSeries.ColorModel>
 										<!--<chart:DoughnutSeries.CenterView>
 											<StackLayout x:Name="stackPermessi" Orientation ="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -132,25 +149,8 @@
 
 				<Frame BorderColor="Black" Grid.Row="2"
 					Padding="5" Margin="5,0,5,5">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="1.5*"/>
-						</Grid.ColumnDefinitions>
-
-
-						<Grid>
-							<Grid.RowDefinitions>
-								<RowDefinition Height="*"/>
-								<RowDefinition Height="*"/>
-							</Grid.RowDefinitions>
-
-							<Label Text="{Binding BuoniPasto}" Margin="0,16,0,0" VerticalTextAlignment="End" HorizontalTextAlignment="Center" FontSize="50"/>
-							<Label Grid.Row="1" Text="Buoni pasto consegnati" FontSize="22" HorizontalTextAlignment="Center"/>
-						</Grid>
-
-						<Grid Grid.Column="1" BackgroundColor="Green">
-							<chart:SfChart x:Name="ChartStipendio" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+				<Grid>
+					<chart:SfChart x:Name="ChartStipendio" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 
 								<chart:SfChart.BindingContext>
 									<viewmodels:HomeViewModel/>
@@ -165,12 +165,12 @@
 										<chart:DoughnutSeries.DataMarker>
 											<chart:ChartDataMarker ShowLabel="True">
 												<chart:ChartDataMarker.LabelStyle>
-													<chart:DataMarkerLabelStyle LabelPosition="Outer" FontSize="16" LabelFormat="###,###.###€"/>
+											<chart:DataMarkerLabelStyle LabelPosition="Outer" TextColor="Black" FontSize="16" LabelFormat="###,###.###€"/>
 												</chart:ChartDataMarker.LabelStyle>
 											</chart:ChartDataMarker>
 										</chart:DoughnutSeries.DataMarker>
 										<chart:DoughnutSeries.ColorModel>
-											<chart:ChartColorModel Palette="Natural" />
+									<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette3}"/>
 										</chart:DoughnutSeries.ColorModel>
 										<!--<chart:DoughnutSeries.CenterView>
 											<StackLayout x:Name="stackStipendio" Orientation ="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -181,8 +181,6 @@
 									</chart:DoughnutSeries>
 								</chart:SfChart.Series>
 							</chart:SfChart>
-
-						</Grid>
 
 					</Grid>
 				</Frame>
