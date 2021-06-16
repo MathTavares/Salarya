@@ -118,7 +118,7 @@
 														<chart:DoughnutSeries.DataMarker>
 															<chart:ChartDataMarker ShowLabel="True" >
 																<chart:ChartDataMarker.LabelStyle>
-																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" TextColor="Black" />
+																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Center" TextColor="Black" />
 
 																</chart:ChartDataMarker.LabelStyle>
 															</chart:ChartDataMarker>
@@ -150,12 +150,12 @@
 												</chart:SfChart.Legend>
 												<chart:SfChart.Series>
 													<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi"
-																		 ItemsSource="{Binding CurrentItem.PermessiVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" 
+																		 ItemsSource="{Binding CurrentItem.PermessiVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="True" 
 																		 StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
 														<chart:DoughnutSeries.DataMarker>
 															<chart:ChartDataMarker ShowLabel="True">
 																<chart:ChartDataMarker.LabelStyle>
-																	<chart:DataMarkerLabelStyle FontSize="18" TextColor="Black" LabelPosition="Outer"/>
+																	<chart:DataMarkerLabelStyle FontSize="18" TextColor="Black" LabelPosition="Center"/>
 																</chart:ChartDataMarker.LabelStyle>
 															</chart:ChartDataMarker>
 														</chart:DoughnutSeries.DataMarker>
@@ -192,7 +192,7 @@
 												<chart:DoughnutSeries ListenPropertyChange="True" CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio"
 																	 ItemsSource="{Binding CurrentItem.StipendioVM.DoughnutSeriesData}"
 															 XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="true" StrokeWidth="1" StrokeColor="White"
-															 ExplodeOnTouch="true" EnableDataPointSelection="true" TrackBorderWidth="0.1">
+															 ExplodeOnTouch="False" EnableDataPointSelection="False" TrackBorderWidth="0.1">
 													<chart:DoughnutSeries.DataMarker>
 														<chart:ChartDataMarker ShowLabel="True">
 															<chart:ChartDataMarker.LabelStyle>

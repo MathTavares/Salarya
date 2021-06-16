@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Salarya.Views.AboutPage"
-             xmlns:vm="clr-namespace:Salarya.ViewModels"
-             Title="{Binding Title}">
-    
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-    
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+				 x:Class="Salarya.Views.AboutPage"
+				 xmlns:vm="clr-namespace:Salarya.ViewModels"
+				 Title="{Binding Title}">
+	 
+	 <ContentPage.BindingContext>
+		  <vm:AboutViewModel />
+	 </ContentPage.BindingContext>
+	 
+	 <ContentPage.Resources>
+		  <ResourceDictionary>
+				<Color x:Key="Accent">#96d1ff</Color>
+		  </ResourceDictionary>
+	 </ContentPage.Resources>
 
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" Padding="30,0,30,30" Spacing="28">
@@ -22,17 +22,17 @@
 			<Frame BackgroundColor="#BF043055" HasShadow="False">
 				<StackLayout Orientation="Vertical" Spacing="10">
 					<Entry x:Name="Email" Text="{Binding Nome}" Placeholder="Nome"   
-                           PlaceholderColor="White" HeightRequest="40"   
-                           TextColor="White"/>
+									PlaceholderColor="White" HeightRequest="40"   
+									TextColor="White"/>
 					<Entry x:Name="Password" Text="{Binding CodiceFiscale}" Placeholder="codice fiscale"   
-                           PlaceholderColor="White" HeightRequest="40"   
-                           IsPassword="False"  
-                           TextColor="White"/>
+									PlaceholderColor="White" HeightRequest="40"   
+									IsPassword="False"  
+									TextColor="White"/>
 				</StackLayout>
 			</Frame>
 			<Button Command="{Binding SubmitCommand}" Text="Login" TextColor="White"  
-                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
-                    BackgroundColor="#088da5" />
+						  FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+						  BackgroundColor="#088da5" />
 		</StackLayout>
 	</ContentPage.Content>
 

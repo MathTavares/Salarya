@@ -10,6 +10,7 @@ namespace Salarya.ViewModels
 {
 	public class MensilitaViewModel : BaseViewModel, INotifyPropertyChanged
 	{
+		
 		public MensilitaViewModel(BustaMensile busta)
 		{
 			StipendioVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>

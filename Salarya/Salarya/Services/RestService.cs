@@ -7,6 +7,10 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Text;
+using Android.Content.Res;
+using Android;
+using System.IO;
+using System.Linq;
 
 namespace Salarya.Services
 {
@@ -24,7 +28,7 @@ namespace Salarya.Services
 			List<BustaMensile> repositories = new List<BustaMensile>();
 			try
 			{
-				if (!uri.Equals("2021"))
+				if (string.IsNullOrEmpty(uri))
 				{
 					HttpResponseMessage response = await _client.GetAsync(uri);
 					response.Dispose();
@@ -37,60 +41,94 @@ namespace Salarya.Services
 				else
 				{
 
-					//var questionsList = JsonConvert.DeserializeObject<BustaMensile>(JsonFile);
+
+					#region LOAD DATA
 
 					repositories.Add(new BustaMensile()
 					{
-						Year = 2021,
-						FirstName = "Math",
-						Month = "Febbraio",
-						NetSalary = (decimal)1999.54,
-						GrossSalary = (decimal)1980.34,
-						HolidayDue = 11,
-						HolidayEnjoyed = 2,
-						PermitsDue = 35,
-						PermitsEnjoyed = 2
+						IdPDFSalary = 0,
+						 Year = 2021,
+						 Month = "GIUGNO",
+						 FirstName = "MARIO",
+						 LastName = "VERDI",
+						 Qualification = "IMPIEGATO",
+						 CodTax = "VRDMRO25E04G444T",
+						 HolidayDue = (decimal)5.76,
+						 HolidayEnjoyed = (decimal)3.00,
+						 HolidayResidual = (decimal)2.76,
+						 PermitsDue = (decimal)27.00,
+						 PermitsEnjoyed = (decimal)0.00,
+						 PermitsResidual = (decimal)27.00,
+						 NetSalary = (decimal)1472.53,
+						 GrossSalary = (decimal)2069.77
 					});
 
 					repositories.Add(new BustaMensile()
 					{
+						IdPDFSalary = 0,
 						Year = 2021,
-						FirstName = "Math",
-						Month = "Marzo",
-						NetSalary = (decimal)1666.54,
-						GrossSalary = (decimal)1980.34,
-						HolidayDue = 22,
-						HolidayEnjoyed = 2,
-						PermitsDue = 35,
-						PermitsEnjoyed = 2
+						Month = "LUGLIO",
+						FirstName = "MARIO",
+						LastName = "VERDI",
+						Qualification = "IMPIEGATO",
+						CodTax = "VRDMRO25E04G444T",
+						HolidayDue = (decimal)5,
+						HolidayEnjoyed = (decimal)3.00,
+						HolidayResidual = (decimal)2,
+						PermitsDue = (decimal)27.00,
+						PermitsEnjoyed = (decimal)4.00,
+						PermitsResidual = (decimal)27.00,
+						NetSalary = (decimal)1572.53,
+						GrossSalary = (decimal)2169.77
 					});
 
 					repositories.Add(new BustaMensile()
 					{
-						Year = 2021,
-						FirstName = "Math",
-						Month = "Aprile",
-						NetSalary = (decimal)1777.54,
-						GrossSalary = (decimal)1980.34,
-						HolidayDue = 33,
-						HolidayEnjoyed = 2,
-						PermitsDue = 35,
-						PermitsEnjoyed = 2
+						 IdPDFSalary = 0,
+							 Year = 2021,
+							 Month = "GIUGNO",
+							 FirstName = "GIANNA",
+							 LastName = "GIONNO",
+							 Qualification = "IMPIEGATO",
+							 CodTax = "GNNGNN15F04G454S",
+							 HolidayDue = (decimal)5,
+							 HolidayEnjoyed = (decimal)2.00,
+							 HolidayResidual = (decimal)3,
+							 PermitsDue = (decimal)27.00,
+							 PermitsEnjoyed = (decimal)3.00,
+							 PermitsResidual = (decimal)24.00,
+							 NetSalary = (decimal)1491.12,
+							 GrossSalary = (decimal)2198.14
 					});
 
-				
-					
+					//repositories.Add(new BustaMensile()
+					//{
+					//	Year = 2021,
+					//	FirstName = "Math",
+					//	Month = "Aprile",
+					//	NetSalary = (decimal)1777.54,
+					//	GrossSalary = (decimal)1980.34,
+					//	HolidayDue = 33,
+					//	HolidayEnjoyed = 2,
+					//	PermitsDue = 35,
+					//	PermitsEnjoyed = 2
+					//});
+					#endregion
+
+
+
 				}
-				
+
 			}
 			catch (Exception ex)
 			{
 				Debug.WriteLine("\tERROR {0}", ex.Message);
 			}
 
-		
 
-			return repositories;
+
+			return repositories.Where(x => string.Equals(x.CodTax, uri)).ToList();
+			//return repositories;
 		}
 
 

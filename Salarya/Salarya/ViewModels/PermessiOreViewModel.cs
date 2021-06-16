@@ -107,5 +107,10 @@ namespace Salarya.ViewModels
 			OnCollectionChanged(() => DoughnutSeriesData);
 		}
 
+		public void RaiseAll()
+		{
+			OnPropertyChanged(nameof(DoughnutSeriesData));
+		}
+
 	}
 }

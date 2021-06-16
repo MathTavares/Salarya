@@ -15,18 +15,27 @@ using Xamarin.Forms.Xaml;
 namespace Salarya.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[QueryProperty(nameof(CodiceFiscale), "CodiceFiscale")]
+	//[QueryProperty(nameof(CodiceFiscale), "CodiceFiscale")]
 	public partial class Home : ContentPage
 	{
 
-		public string CodiceFiscale { get; set; }
+		//public string CodiceFiscale { get; set; }
 		public Home()
 		{
 			InitializeComponent();
-			((HomeViewModel)this.BindingContext).CodiceFiscale = CodiceFiscale;
-			Carosel.CurrentItemChanged += Carosel_CurrentItemChanged;
+			//((HomeViewModel)this.BindingContext).CodiceFiscale = CodiceFiscale;
+			//Carosel.CurrentItemChanged += Carosel_CurrentItemChanged;
 
 		}
+
+		//public string CodiceFiscale
+		//{
+		//	set
+		//	{
+
+		//	};
+		//	get;
+		//}
 
 		private void Carosel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
 		{
