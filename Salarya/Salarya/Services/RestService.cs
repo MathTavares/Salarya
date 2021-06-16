@@ -38,38 +38,41 @@ namespace Salarya.Services
 				{
 					repositories.Add(new BustaMensile()
 					{
-						Nome = "Math",
-						Mese = "Febbraio",
-						Netto = 1999.54,
-						Lordo = 1980.34,
-						FerieDovute = 55,
-						FerieGodute = 2,
-						OreMaturate = 35,
-						OreGodute = 2
+						Year = 2021,
+						FirstName = "Math",
+						Month = "Febbraio",
+						NetSalary = (decimal)1999.54,
+						GrossSalary = (decimal)1980.34,
+						HolidayDue = 55,
+						HolidayEnjoyed = 2,
+						PermitsDue = 35,
+						PermitsEnjoyed = 2
 					});
 
 					repositories.Add(new BustaMensile()
 					{
-						Nome = "Math",
-						Mese = "Marzo",
-						Netto = 1666.54,
-						Lordo = 1910.34,
-						FerieDovute = 16,
-						FerieGodute = 2,
-						OreMaturate = 35,
-						OreGodute = 5
+						Year = 2021,
+						FirstName = "Math",
+						Month = "Marzo",
+						NetSalary = (decimal)1666.54,
+						GrossSalary = (decimal)1980.34,
+						HolidayDue = 55,
+						HolidayEnjoyed = 2,
+						PermitsDue = 35,
+						PermitsEnjoyed = 2
 					});
 
 					repositories.Add(new BustaMensile()
 					{
-						Nome = "Math",
-						Mese = "Aprile",
-						Netto = 1555.54,
-						Lordo = 1810.34,
-						FerieDovute = 12,
-						FerieGodute = 2,
-						OreMaturate = 88,
-						OreGodute = 6
+						Year = 2021,
+						FirstName = "Math",
+						Month = "Aprile",
+						NetSalary = (decimal)1777.54,
+						GrossSalary = (decimal)1980.34,
+						HolidayDue = 55,
+						HolidayEnjoyed = 2,
+						PermitsDue = 35,
+						PermitsEnjoyed = 2
 					});
 
 					
@@ -87,6 +90,12 @@ namespace Salarya.Services
 
 			return repositories;
 		}
+
+		//[HttpGet]
+		//public List<BustaMensile> GetSalarySheetList(int year, String CodTax)
+		//{
+		//	return new List<BustaMensile>();
+		//}
 
 		public void Dispose()
 		{

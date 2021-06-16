@@ -19,8 +19,8 @@ namespace Salarya.ViewModels
 		}
 		private int selectedIndex;
 		private string _selectedItemName;
-		private double _selectedItemsPercentage;
-		private double _sum;
+		private decimal _selectedItemsPercentage;
+		private decimal _sum;
 		private string _stringSum;
 		private ObservableCollection<ChartDataModel> _doughnutSeriesData;
 
@@ -35,7 +35,7 @@ namespace Salarya.ViewModels
 		}
 
 
-		public double SelectedItemsPercentage
+		public decimal SelectedItemsPercentage
 		{
 			get => _selectedItemsPercentage;
 			set
@@ -45,7 +45,7 @@ namespace Salarya.ViewModels
 			}
 		}
 
-		public double Sum
+		public decimal Sum
 		{
 			get => _sum;
 			set

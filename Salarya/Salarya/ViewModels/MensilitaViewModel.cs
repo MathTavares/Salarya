@@ -14,22 +14,22 @@ namespace Salarya.ViewModels
 		{
 			StipendioVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("Importo netto", busta.Netto),
-					 new ChartDataModel("Trattenute", busta.Lordo - busta.Netto),
+					 new ChartDataModel("Importo netto", busta.NetSalary),
+					 new ChartDataModel("Trattenute", busta.GrossSalary - busta.NetSalary),
 			  });
 			PermessiVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("ore maturate", busta.OreMaturate),
-					 new ChartDataModel("ore godute", busta.OreGodute),
+					 new ChartDataModel("ore maturate", busta.PermitsDue),
+					 new ChartDataModel("ore godute", busta.PermitsEnjoyed),
 			  });
 			FerieVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("gg maturati", busta.FerieDovute),
-					 new ChartDataModel("gg goduti", busta.FerieGodute),
+					 new ChartDataModel("gg maturati", busta.HolidayDue),
+					 new ChartDataModel("gg goduti", busta.HolidayEnjoyed),
 			  });
 
-			MeseCorrente = $"{busta.Mese} 2021";
-			StipendioNetto = $"{busta.Netto} €";
+			MeseCorrente = $"{busta.Month} {busta.Year}";
+			StipendioNetto = $"{busta.NetSalary} €";
 			BuoniPasto = 22;
 		}
 

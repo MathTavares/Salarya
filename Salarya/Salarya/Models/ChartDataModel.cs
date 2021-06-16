@@ -8,7 +8,7 @@ namespace Salarya.Models
 	public class ChartDataModel : INotifyPropertyChanged
 	{
 		private string _name;
-		private double _value;
+		private decimal _value;
 		public string Name 
 		{
 			get => _name;
@@ -19,7 +19,7 @@ namespace Salarya.Models
 			}
 		}
 
-		public double Value
+		public decimal Value
 		{
 			get => _value;
 			set
@@ -30,7 +30,7 @@ namespace Salarya.Models
 		}
 
 
-		public ChartDataModel(string name, double value)
+		public ChartDataModel(string name, decimal value)
 		{
 			Name = name;
 			Value = value;

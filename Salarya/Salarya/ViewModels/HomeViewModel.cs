@@ -56,7 +56,12 @@ namespace Salarya.ViewModels
 
 		private void UpdateCurrentData()
 		{
-			FerieSeriesData = CurrentItem.FerieVM.DoughnutSeriesData;
+			Device.BeginInvokeOnMainThread(() =>
+			{
+				FerieSeriesData?.Clear();
+				FerieSeriesData = CurrentItem?.FerieVM?.DoughnutSeriesData;
+			});
+		
 		}
 
 
@@ -104,14 +109,22 @@ namespace Salarya.ViewModels
 			OnCollectionChanged(() => MensilitaViewModels);
 		}
 
+		private void _ferie_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+		{
+			OnCollectionChanged(() => FerieSeriesData);
+		}
+
 		public MensilitaViewModel CurrentItem
 		{
 			get => _currentItem;
 			set
 			{
-				_currentItem = value;
-				UpdateCurrentData();
-				OnPropertyChanged(nameof(CurrentItem));
+				if(_currentItem != value)
+				{
+					_currentItem = value;
+					UpdateCurrentData();
+					OnPropertyChanged(nameof(CurrentItem));
+				}
 			}
 		}
 
@@ -120,8 +133,20 @@ namespace Salarya.ViewModels
 			get => _ferieSeriesData;
 			set
 			{
-				_ferieSeriesData = value;
-				OnPropertyChanged(nameof(CurrentItem));
+				if (_ferieSeriesData != null)
+				{
+					_ferieSeriesData.CollectionChanged -= _ferie_CollectionChanged;
+				}
+				if (_ferieSeriesData != value)
+				{
+					_ferieSeriesData = value;
+					if (_ferieSeriesData != null)
+					{
+						_ferieSeriesData.CollectionChanged += _ferie_CollectionChanged;
+					}
+					OnPropertyChanged(nameof(FerieSeriesData));
+				}
+
 			}
 		}
 

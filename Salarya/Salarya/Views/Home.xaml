@@ -29,7 +29,7 @@
 		<StackLayout>
 			<RefreshView IsRefreshing="{Binding IsRefreshing}"
 				 Command="{Binding RefreshCommand}">
-				<CarouselView ItemsSource="{Binding MensilitaViewModels, Mode=OneWay}" CurrentItem="{Binding CurrentItem, Mode=TwoWay}" IndicatorView="{x:Reference monkeysIndicator}">
+				<CarouselView ItemsSource="{Binding MensilitaViewModels}" CurrentItem="{Binding CurrentItem, Mode=TwoWay}" IndicatorView="{x:Reference monkeysIndicator}">
 					<CarouselView.ItemTemplate>
 						<DataTemplate>
 
@@ -43,7 +43,7 @@
 
 
 								<Frame BorderColor="Black" HasShadow="True"
-				 Padding="5" Margin="5,5,5,0">
+									Padding="5" Margin="5,5,5,0">
 									<Grid >
 										<Grid.RowDefinitions>
 											<RowDefinition Height="*"/>
@@ -130,8 +130,8 @@
 													</chart:ChartLegend>
 												</chart:SfChart.Legend>
 												<chart:SfChart.Series>
-													<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.FerieVM.SelectedIndex}" x:Name="doughnutSeriesFerie" 
-																		 ItemsSource="{Binding CurrentItem.FerieVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" 
+													<chart:DoughnutSeries ListenPropertyChange="True"  CircularCoefficient="0.9" DoughnutCoefficient="0.7"  x:Name="doughnutSeriesFerie" 
+																		 ItemsSource="{Binding FerieSeriesData, Mode=OneWay}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="True" 
 																		 StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
 														<chart:DoughnutSeries.DataMarker>
 															<chart:ChartDataMarker ShowLabel="True" >
@@ -212,7 +212,7 @@
 												</chart:ChartLegend>
 											</chart:SfChart.Legend>
 											<chart:SfChart.Series>
-												<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio"
+												<chart:DoughnutSeries ListenPropertyChange="True" CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio"
 																	 ItemsSource="{Binding CurrentItem.StipendioVM.DoughnutSeriesData}"
 															 XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="true" StrokeWidth="1" StrokeColor="White"
 															 ExplodeOnTouch="true" EnableDataPointSelection="true" TrackBorderWidth="0.1">

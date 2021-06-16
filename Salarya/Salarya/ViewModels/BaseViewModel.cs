@@ -12,10 +12,10 @@ namespace Salarya.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged, INotifyCollectionChanged
 	{
-		public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+		//public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
 		bool isBusy = false;
-		public bool IsBusy
+		public bool IsBusys
 		{
 			get { return isBusy; }
 			set { SetProperty(ref isBusy, value); }
