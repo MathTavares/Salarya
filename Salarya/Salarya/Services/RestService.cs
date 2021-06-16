@@ -39,13 +39,13 @@ namespace Salarya.Services
 					repositories.Add(new BustaMensile()
 					{
 						Nome = "Math",
-						Mese = "Aprile",
-						Netto = 1555.54,
-						Lordo = 1810.34,
-						FerieDovute = 12,
+						Mese = "Febbraio",
+						Netto = 1999.54,
+						Lordo = 1980.34,
+						FerieDovute = 55,
 						FerieGodute = 2,
-						OreMaturate = 88,
-						OreGodute = 6
+						OreMaturate = 35,
+						OreGodute = 2
 					});
 
 					repositories.Add(new BustaMensile()
@@ -63,14 +63,18 @@ namespace Salarya.Services
 					repositories.Add(new BustaMensile()
 					{
 						Nome = "Math",
-						Mese = "Febbraio",
-						Netto = 1999.54,
-						Lordo = 1980.34,
-						FerieDovute = 55,
+						Mese = "Aprile",
+						Netto = 1555.54,
+						Lordo = 1810.34,
+						FerieDovute = 12,
 						FerieGodute = 2,
-						OreMaturate = 35,
-						OreGodute = 2
+						OreMaturate = 88,
+						OreGodute = 6
 					});
+
+					
+
+					
 				}
 				
 			}

@@ -7,6 +7,9 @@ using System.Linq;
 using Salarya.Models;
 using Salarya.Services;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace Salarya.ViewModels
 {
@@ -14,24 +17,41 @@ namespace Salarya.ViewModels
 	{
 		public HomeViewModel()
 		{
-			Task.Run(async () => await GetYear("2021"));
+			Task.Run(async () => await GetYear());
+
+			RefreshCommand = new Command(async () => await GetYear());
 		}
 
-		public async Task GetYear(string url)
+		public async Task GetYear()
 		{
 			using (var restService = new RestService())
 			{
-				_listOfYear = await restService.GetRepositoriesAsync(url);
-				MensilitaViewModels = new ObservableCollection<MensilitaViewModel>();
+				IsRefreshing = true;
+				_listOfYear = await restService.GetRepositoriesAsync("2021");
+
+				var tempMensilitaViewModels = new ObservableCollection<MensilitaViewModel>();
 				foreach (var mese in _listOfYear)
 				{
-					MensilitaViewModels.Add(new MensilitaViewModel(mese));
+					tempMensilitaViewModels.Add(new MensilitaViewModel(mese));
 				}
 
-				CurrentItem = MensilitaViewModels?.FirstOrDefault();
+				
+				try
+				{
+					
+					MensilitaViewModels = tempMensilitaViewModels;
+					IsRefreshing = false;
+				}
+				catch (Exception ex)
+				{
+					System.Console.WriteLine(ex);
+				}
+				
+				
+				CurrentItem = MensilitaViewModels?.LastOrDefault();
 				OnPropertyChanged("CurrentItem");
+				
 			}
-
 		}
 
 		private void UpdateCurrentData()
@@ -45,6 +65,9 @@ namespace Salarya.ViewModels
 		private ObservableCollection<MensilitaViewModel> _mensilitaViewModels;
 		private MensilitaViewModel _currentItem;
 		private ObservableCollection<ChartDataModel> _ferieSeriesData;
+		private bool _isRefreshing;
+
+		public ICommand RefreshCommand { protected set; get; }
 
 		public string MeseCorrente
 		{
@@ -64,12 +87,15 @@ namespace Salarya.ViewModels
 				{
 					_mensilitaViewModels.CollectionChanged -= _mensilitaViewModels_CollectionChanged;
 				}
-				_mensilitaViewModels = value;
-				if (_mensilitaViewModels != null)
+				if(_mensilitaViewModels != value)
 				{
-					_mensilitaViewModels.CollectionChanged += _mensilitaViewModels_CollectionChanged;
+					_mensilitaViewModels = value;
+					if (_mensilitaViewModels != null)
+					{
+						_mensilitaViewModels.CollectionChanged += _mensilitaViewModels_CollectionChanged;
+					}
+					OnPropertyChanged(nameof(MensilitaViewModels));
 				}
-				OnPropertyChanged(nameof(MensilitaViewModels));
 			}
 		}
 
@@ -96,6 +122,16 @@ namespace Salarya.ViewModels
 			{
 				_ferieSeriesData = value;
 				OnPropertyChanged(nameof(CurrentItem));
+			}
+		}
+
+		public bool IsRefreshing
+		{
+			get => _isRefreshing;
+			set
+			{
+				_isRefreshing = value;
+				OnPropertyChanged(nameof(IsRefreshing));
 			}
 		}
 
