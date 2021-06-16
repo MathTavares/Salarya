@@ -90,16 +90,23 @@
 											<viewmodels:HomeViewModel/>
 										</chart:SfChart.BindingContext>
 										<chart:SfChart.Legend>
-											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
+											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" DockPosition="Bottom" >
+												<chart:ChartLegend.LabelStyle>
+
+													<chart:ChartLegendLabelStyle TextColor="Black" />
+
+												</chart:ChartLegend.LabelStyle>
+											</chart:ChartLegend>
 										</chart:SfChart.Legend>
 										<chart:SfChart.Series>
 											<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.FerieVM.SelectedIndex}" x:Name="doughnutSeriesFerie" 
 																		 ItemsSource="{Binding CurrentItem.FerieVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="False" 
 																		 StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
 												<chart:DoughnutSeries.DataMarker>
-													<chart:ChartDataMarker ShowLabel="True">
+													<chart:ChartDataMarker ShowLabel="True" >
 														<chart:ChartDataMarker.LabelStyle>
 															<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" TextColor="Black" />
+															
 														</chart:ChartDataMarker.LabelStyle>
 													</chart:ChartDataMarker>
 												</chart:DoughnutSeries.DataMarker>
@@ -127,7 +134,11 @@
 											<viewmodels:HomeViewModel/>
 										</chart:SfChart.BindingContext>
 										<chart:SfChart.Legend>
-											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" ItemMargin="4"  DockPosition="Bottom" />
+											<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" ItemMargin="4"  DockPosition="Bottom" >
+												<chart:ChartLegend.LabelStyle>
+													<chart:ChartLegendLabelStyle TextColor="Black"/>
+												</chart:ChartLegend.LabelStyle>
+											</chart:ChartLegend>
 										</chart:SfChart.Legend>
 										<chart:SfChart.Series>
 											<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi"
@@ -143,12 +154,6 @@
 												<chart:DoughnutSeries.ColorModel>
 													<chart:ChartColorModel Palette="Custom"  CustomBrushes="{StaticResource ColorPalette2}" />
 												</chart:DoughnutSeries.ColorModel>
-												<!--<chart:DoughnutSeries.CenterView>
-											<StackLayout x:Name="stackPermessi" Orientation ="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-												<Label Text="{Binding BindingContext.PermessiVM.SelectedItemName}" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-												<Label Text="{Binding BindingContext.PermessiVM.SelectedItemsPercentage,StringFormat='{0}%'}" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-											</StackLayout>
-										</chart:DoughnutSeries.CenterView>-->
 											</chart:DoughnutSeries>
 										</chart:SfChart.Series>
 									</chart:SfChart>
@@ -167,7 +172,13 @@
 										<viewmodels:HomeViewModel/>
 									</chart:SfChart.BindingContext>
 									<chart:SfChart.Legend>
-										<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" />
+										<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" >
+											<chart:ChartLegend.LabelStyle>
+
+												<chart:ChartLegendLabelStyle TextColor="Black"/>
+
+											</chart:ChartLegend.LabelStyle>
+										</chart:ChartLegend>
 									</chart:SfChart.Legend>
 									<chart:SfChart.Series>
 										<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio"
@@ -184,12 +195,12 @@
 											<chart:DoughnutSeries.ColorModel>
 												<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette3}"/>
 											</chart:DoughnutSeries.ColorModel>
-											<!--<chart:DoughnutSeries.CenterView>
+											<chart:DoughnutSeries.CenterView>
 											<StackLayout x:Name="stackStipendio" Orientation ="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 												<Label Text="Lordo" TextColor="Black" FontAttributes="Bold" FontSize="18" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-												<Label Text="{Binding BindingContext.StipendioVM.StringSum}" TextColor="Black" FontAttributes="Bold" FontSize="18" FontFamily="Helvetica" HorizontalTextAlignment="Center"/>
+												<Label Text="{Binding BindingContext.CurrentItem.StipendioVM.StringSum}" TextColor="Black" FontAttributes="Bold" FontSize="16" FontFamily="Helvetica" HorizontalTextAlignment="Center"/>
 											</StackLayout>
-										</chart:DoughnutSeries.CenterView>-->
+										</chart:DoughnutSeries.CenterView>
 										</chart:DoughnutSeries>
 									</chart:SfChart.Series>
 								</chart:SfChart>
