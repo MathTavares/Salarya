@@ -16,7 +16,7 @@
     </ContentPage.Resources>
 
 	<ContentPage.Content>
-		<StackLayout Orientation="Vertical" Padding="30" Spacing="40">
+		<StackLayout Orientation="Vertical" Padding="30,0,30,30" Spacing="28">
 			<BoxView HeightRequest="10"/>
 			<Image HorizontalOptions="Center" WidthRequest="300" HeightRequest="150" Source="SalaryaLogo.png"/>
 			<Frame BackgroundColor="#BF043055" HasShadow="False">
