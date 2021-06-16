@@ -36,6 +36,9 @@ namespace Salarya.Services
 				}
 				else
 				{
+
+					//var questionsList = JsonConvert.DeserializeObject<BustaMensile>(JsonFile);
+
 					repositories.Add(new BustaMensile()
 					{
 						Year = 2021,
@@ -75,8 +78,7 @@ namespace Salarya.Services
 						PermitsEnjoyed = 2
 					});
 
-					
-
+				
 					
 				}
 				
@@ -91,11 +93,8 @@ namespace Salarya.Services
 			return repositories;
 		}
 
-		//[HttpGet]
-		//public List<BustaMensile> GetSalarySheetList(int year, String CodTax)
-		//{
-		//	return new List<BustaMensile>();
-		//}
+
+		public string JsonFile = "";
 
 		public void Dispose()
 		{

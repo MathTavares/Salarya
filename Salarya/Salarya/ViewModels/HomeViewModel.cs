@@ -160,6 +160,8 @@ namespace Salarya.ViewModels
 			}
 		}
 
+		public string CodiceFiscale { get; set; }
+
 	}
 }
 

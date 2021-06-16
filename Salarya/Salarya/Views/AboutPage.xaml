@@ -18,7 +18,7 @@
 	<ContentPage.Content>
 		<StackLayout Orientation="Vertical" Padding="30" Spacing="40">
 			<BoxView HeightRequest="10"/>
-			<Image HorizontalOptions="Center" WidthRequest="300" Source="maco.jpg"/>
+			<Image HorizontalOptions="Center" WidthRequest="300" HeightRequest="150" Source="SalaryaLogo.png"/>
 			<Frame BackgroundColor="#BF043055" HasShadow="False">
 				<StackLayout Orientation="Vertical" Spacing="10">
 					<Entry x:Name="Email" Text="{Binding Nome}" Placeholder="Nome"   

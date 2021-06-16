@@ -1,4 +1,5 @@
-﻿using Syncfusion.SfChart.XForms;
+﻿using Salarya.ViewModels;
+using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,15 @@ using Xamarin.Forms.Xaml;
 namespace Salarya.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
+	[QueryProperty(nameof(CodiceFiscale), "CodiceFiscale")]
 	public partial class Home : ContentPage
 	{
+
+		public string CodiceFiscale { get; set; }
 		public Home()
 		{
 			InitializeComponent();
+			((HomeViewModel)this.BindingContext).CodiceFiscale = CodiceFiscale;
 		}
 
 		//protected override void OnSizeAllocated(double width, double height)

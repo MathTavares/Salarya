@@ -17,7 +17,7 @@ namespace Salarya.ViewModels
 		{
 			if(!string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(CodiceFiscale))
 			{
-				await Shell.Current.GoToAsync($"//{nameof(Home)}");
+				await Shell.Current.GoToAsync($"//{nameof(Home)}?CodiceFiscale={CodiceFiscale}");
 			}
 		}
 

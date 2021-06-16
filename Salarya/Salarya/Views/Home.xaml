@@ -46,56 +46,36 @@
 									Padding="5" Margin="5,5,5,0">
 									<Grid >
 										<Grid.RowDefinitions>
-											<RowDefinition Height="*"/>
+											<RowDefinition Height="40"/>
 											<RowDefinition Height="*"/>
 											<RowDefinition Height="*"/>
 										</Grid.RowDefinitions>
 
-										<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0"  FontAttributes="Bold" FontSize="24" FontFamily="Helvetica" />
+										<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0"  FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" />
 										<Grid Grid.Row="1">
-											<Grid.RowDefinitions>
-												<RowDefinition Height="*"/>
-												<RowDefinition Height="2"/>
-											</Grid.RowDefinitions>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto"/>
+												<ColumnDefinition Width="*"/>
+											</Grid.ColumnDefinitions>
 
-											<Label Text="{Binding StipendioNetto}" TextColor="Black" Grid.Row="0" FontAttributes="Bold" FontSize="40" FontFamily="Helvetica" HorizontalTextAlignment="End" />
-											<Line Stroke="Black" StrokeThickness="4" X2="200" Grid.Row="1" Margin="100,0,0,0" HorizontalOptions="End" />
+											<Label Text="Netto" Margin="20,4,0,0" FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" HorizontalOptions="Center" VerticalTextAlignment="Center" /> 
+
+											<Label Grid.Column="1" Text="{Binding StipendioNetto}" TextColor="Black" Grid.Row="0" FontAttributes="Bold" FontSize="50" FontFamily="Helvetica" HorizontalTextAlignment="End" />
 										</Grid>
 
 										<Grid Grid.Row="2">
 											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="*"/>
-												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="Auto"/>
+												<ColumnDefinition Width="Auto"/>
 											</Grid.ColumnDefinitions>
 
 											<button:SfButton BackgroundColor="Transparent" CornerRadius="7" HorizontalOptions="Start" >
 												<button:SfButton.Content>
-													<Grid HeightRequest="64" WidthRequest="52" Margin="10">
+													<Grid HeightRequest="58" WidthRequest="52" Margin="8">
 														<Image Source="pdf.png" />
 													</Grid>
 												</button:SfButton.Content>
 											</button:SfButton>
-
-											<Grid Grid.Column="1">
-												<Grid.RowDefinitions>
-													<RowDefinition Height="*"/>
-													<RowDefinition Height="*"/>
-												</Grid.RowDefinitions>
-												<Grid>
-													<Grid.ColumnDefinitions>
-														<ColumnDefinition Width="Auto"/>
-														<ColumnDefinition Width="*"/>
-
-													</Grid.ColumnDefinitions>
-													<!--<Path Data="m289.44998,206.31811l10.5,-17l10.5,17l-21,0z" Fill=#8CD79F"/>-->
-
-
-													<Label Grid.Column="1" Text="mese attuale"/>
-												</Grid>
-
-												<Label Grid.Row="1" Text="mese precedente"/>
-
-											</Grid>
 										</Grid>
 
 
