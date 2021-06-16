@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-				 xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:viewmodels="clr-namespace:Salarya.ViewModels" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+				 xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:viewmodels="clr-namespace:Salarya.ViewModels" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
 				 x:Class="Salarya.Views.Home">
 
 	<ContentPage.BindingContext>
@@ -27,9 +27,10 @@
 	<ContentPage.Content >
 
 		<StackLayout>
+			
 			<RefreshView IsRefreshing="{Binding IsRefreshing}"
 				 Command="{Binding RefreshCommand}">
-				<CarouselView ItemsSource="{Binding MensilitaViewModels}" CurrentItem="{Binding CurrentItem, Mode=TwoWay}" IndicatorView="{x:Reference monkeysIndicator}">
+				<CarouselView ItemsSource="{Binding MensilitaViewModels}" CurrentItem="{Binding CurrentItem, Mode=TwoWay}" x:Name="Carosel" IndicatorView="{x:Reference monkeysIndicator}">
 					<CarouselView.ItemTemplate>
 						<DataTemplate>
 
@@ -92,7 +93,8 @@
 										</Grid.ColumnDefinitions>
 
 										<!--FERIE-->
-										<Grid >
+										<Grid  >
+
 											<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
 													<chart:ChartTitle Text="Ferie" FontSize="24" TextAlignment="Center"/>
@@ -124,12 +126,7 @@
 														<chart:DoughnutSeries.ColorModel>
 															<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette1}" />
 														</chart:DoughnutSeries.ColorModel>
-														<!--<chart:DoughnutSeries.CenterView>
-											<StackLayout x:Name="stackFerie" Orientation ="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-												<Label Text="{Binding BindingContext.FerieVM.SelectedItemName}" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-												<Label Text="{Binding BindingContext.FerieVM.SelectedItemsPercentage,StringFormat='{0}%'}" TextColor="Black" FontAttributes="Bold" FontSize="12" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-											</StackLayout>
-										</chart:DoughnutSeries.CenterView>-->
+
 													</chart:DoughnutSeries>
 												</chart:SfChart.Series>
 											</chart:SfChart>

@@ -1,8 +1,11 @@
-﻿using Salarya.ViewModels;
+﻿using Salarya.Models;
+using Salarya.ViewModels;
 using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,29 +24,32 @@ namespace Salarya.Views
 		{
 			InitializeComponent();
 			((HomeViewModel)this.BindingContext).CodiceFiscale = CodiceFiscale;
+			Carosel.CurrentItemChanged += Carosel_CurrentItemChanged;
+
 		}
 
-		//protected override void OnSizeAllocated(double width, double height)
-		//{
-		//	base.OnSizeAllocated(width, height);
-		//	if ((Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS))
-		//	{
-		//		if (height > 0 && width > 0)
-		//		{
-		//			if (height > width)
-		//			{
-		//				doughnutSeriesStipendio.CenterView = stackStipendio;
-		//				ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
-		//				ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
-		//			}
-		//			else
-		//			{
-		//				doughnutSeriesStipendio.CenterView = stackStipendio;
-		//				ChartStipendio.Legend.OverflowMode = ChartLegendOverflowMode.Wrap;
-		//				ChartStipendio.Legend.DockPosition = LegendPlacement.Bottom;
-		//			}
-		//		}
-		//	}
-		//}
+		private void Carosel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e)
+		{
+		
+			if(sender is CarouselView carouselView)
+			{
+			}
+		}
+
+		private ObservableCollection<ChartDataModel> _ferieSeriesDataTest;
+		public ObservableCollection<ChartDataModel> FerieSeriesDataTest
+		{
+			get => _ferieSeriesDataTest;
+			set
+			{
+				if (_ferieSeriesDataTest != value)
+				{
+					_ferieSeriesDataTest = value;
+					OnPropertyChanged(nameof(FerieSeriesDataTest));
+				}
+
+			}
+		}
+
 	}
 }

@@ -46,7 +46,7 @@ namespace Salarya.Services
 						Month = "Febbraio",
 						NetSalary = (decimal)1999.54,
 						GrossSalary = (decimal)1980.34,
-						HolidayDue = 55,
+						HolidayDue = 11,
 						HolidayEnjoyed = 2,
 						PermitsDue = 35,
 						PermitsEnjoyed = 2
@@ -59,7 +59,7 @@ namespace Salarya.Services
 						Month = "Marzo",
 						NetSalary = (decimal)1666.54,
 						GrossSalary = (decimal)1980.34,
-						HolidayDue = 55,
+						HolidayDue = 22,
 						HolidayEnjoyed = 2,
 						PermitsDue = 35,
 						PermitsEnjoyed = 2
@@ -72,7 +72,7 @@ namespace Salarya.Services
 						Month = "Aprile",
 						NetSalary = (decimal)1777.54,
 						GrossSalary = (decimal)1980.34,
-						HolidayDue = 55,
+						HolidayDue = 33,
 						HolidayEnjoyed = 2,
 						PermitsDue = 35,
 						PermitsEnjoyed = 2
