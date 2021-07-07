@@ -15,18 +15,18 @@ namespace Salarya.ViewModels
 		{
 			StipendioVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("Importo netto", busta.NetSalary),
-					 new ChartDataModel("Trattenute", busta.GrossSalary - busta.NetSalary),
+					 new ChartDataModel("Net Amount", busta.NetSalary),
+					 new ChartDataModel("Deductions", busta.GrossSalary - busta.NetSalary),
 			  });
 			PermessiVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("ore maturate", busta.PermitsDue),
-					 new ChartDataModel("ore godute", busta.PermitsEnjoyed),
+					 new ChartDataModel("accrued hours", busta.PermitsDue),
+					 new ChartDataModel("used hours", busta.PermitsEnjoyed),
 			  });
 			FerieVM = new PermessiOreViewModel(new ObservableCollection<ChartDataModel>
 				{
-					 new ChartDataModel("gg maturati", busta.HolidayDue),
-					 new ChartDataModel("gg goduti", busta.HolidayEnjoyed),
+					 new ChartDataModel("accrued days", busta.HolidayDue),
+					 new ChartDataModel("used days", busta.HolidayEnjoyed),
 			  });
 
 			MeseCorrente = $"{busta.Month} {busta.Year}";

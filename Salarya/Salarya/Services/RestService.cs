@@ -48,7 +48,7 @@ namespace Salarya.Services
 					{
 						IdPDFSalary = 0,
 						 Year = 2021,
-						 Month = "GIUGNO",
+						 Month = "JUNE",
 						 FirstName = "MARIO",
 						 LastName = "VERDI",
 						 Qualification = "IMPIEGATO",
@@ -67,7 +67,7 @@ namespace Salarya.Services
 					{
 						IdPDFSalary = 0,
 						Year = 2021,
-						Month = "LUGLIO",
+						Month = "JULY",
 						FirstName = "MARIO",
 						LastName = "VERDI",
 						Qualification = "IMPIEGATO",
@@ -86,7 +86,7 @@ namespace Salarya.Services
 					{
 						 IdPDFSalary = 0,
 							 Year = 2021,
-							 Month = "GIUGNO",
+							 Month = "AUGUST",
 							 FirstName = "GIANNA",
 							 LastName = "GIONNO",
 							 Qualification = "IMPIEGATO",

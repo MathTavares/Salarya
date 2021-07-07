@@ -22,6 +22,7 @@
 				<Color>#0769AA</Color>
 				<Color>#FF0000</Color>
 			</chart:ChartColorCollection>
+			<Color x:Key="BlueG"  >black</Color>
 		</ResourceDictionary>
 	</ContentPage.Resources>
 	<ContentPage.Content >
@@ -43,7 +44,7 @@
 								</Grid.RowDefinitions>
 
 
-								<Frame BorderColor="Black" HasShadow="True"
+								<Frame BorderColor="#black" HasShadow="True"
 									Padding="5" Margin="5,5,5,0">
 									<Grid >
 										<Grid.RowDefinitions>
@@ -52,16 +53,16 @@
 											<RowDefinition Height="*"/>
 										</Grid.RowDefinitions>
 
-										<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0"  FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" />
+										<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0"  FontAttributes="Bold" TextColor="#black" FontSize="30" FontFamily="Helvetica" />
 										<Grid Grid.Row="1">
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition Width="Auto"/>
 												<ColumnDefinition Width="*"/>
 											</Grid.ColumnDefinitions>
 
-											<Label Text="Netto" Margin="20,4,0,0" FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" HorizontalOptions="Center" VerticalTextAlignment="Center" /> 
+											<Label Text="Net pay" TextColor="#black" Margin="20,4,0,0" FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" HorizontalOptions="Center" VerticalTextAlignment="Center" />
 
-											<Label Grid.Column="1" Text="{Binding StipendioNetto}" TextColor="Black" Grid.Row="0" FontAttributes="Bold" FontSize="50" FontFamily="Helvetica" HorizontalTextAlignment="End" />
+											<Label Grid.Column="1" Text="{Binding StipendioNetto}" TextColor="#black" Grid.Row="0" FontAttributes="Bold" FontSize="50" FontFamily="Helvetica" HorizontalTextAlignment="End" />
 										</Grid>
 
 										<Grid Grid.Row="2">
@@ -83,8 +84,8 @@
 									</Grid>
 								</Frame>
 
-								<Frame BorderColor="Black" Grid.Row="1"
-					Padding="5" Margin="5,0,5,0">
+								<Frame BorderColor="black" Grid.Row="1"
+					Padding="5" Margin="5,0,5,0" >
 									<Grid>
 
 										<Grid.ColumnDefinitions>
@@ -97,7 +98,7 @@
 
 											<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
-													<chart:ChartTitle Text="Ferie" FontSize="24" TextAlignment="Center"/>
+													<chart:ChartTitle Text="Holidays" TextColor="black" FontSize="24" TextAlignment="Center"/>
 												</chart:SfChart.Title>
 												<chart:SfChart.BindingContext>
 													<viewmodels:HomeViewModel/>
@@ -136,7 +137,7 @@
 										<Grid Grid.Column="1" >
 											<chart:SfChart x:Name="ChartPermessi" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
-													<chart:ChartTitle Text="Permessi" FontSize="24"/>
+													<chart:ChartTitle Text="Permits" TextColor="black" FontSize="24"/>
 												</chart:SfChart.Title>
 												<chart:SfChart.BindingContext>
 													<viewmodels:HomeViewModel/>
@@ -169,7 +170,6 @@
 
 									</Grid>
 								</Frame>
-
 
 								<Frame BorderColor="Black" Grid.Row="2"
 					Padding="5" Margin="5,0,5,5">
@@ -205,7 +205,7 @@
 													</chart:DoughnutSeries.ColorModel>
 													<chart:DoughnutSeries.CenterView>
 														<StackLayout x:Name="stackStipendio" Orientation ="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-															<Label Text="Lordo" TextColor="Black" FontAttributes="Bold" FontSize="18" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
+															<Label Text="Gross wage" TextColor="Black" FontAttributes="Bold" FontSize="18" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
 															<Label Text="{Binding BindingContext.CurrentItem.StipendioVM.StringSum}" TextColor="Black" FontAttributes="Bold" FontSize="16" FontFamily="Helvetica" HorizontalTextAlignment="Center"/>
 														</StackLayout>
 													</chart:DoughnutSeries.CenterView>
@@ -215,8 +215,6 @@
 
 									</Grid>
 								</Frame>
-
-
 
 							</Grid>
 
