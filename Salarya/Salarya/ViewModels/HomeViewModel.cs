@@ -63,22 +63,10 @@ namespace Salarya.ViewModels
 			}
 		}
 
-		private void UpdateCurrentData()
-		{
-			Device.BeginInvokeOnMainThread(() =>
-			{
-				FerieSeriesData?.Clear();
-				FerieSeriesData = CurrentItem?.FerieVM?.DoughnutSeriesData;
-			});
-		
-		}
-
-
 		private string _meseCorrente;
 		private List<BustaMensile> _listOfYear;
 		private ObservableCollection<MensilitaViewModel> _mensilitaViewModels;
 		private MensilitaViewModel _currentItem;
-		private ObservableCollection<ChartDataModel> _ferieSeriesData;
 		private bool _isRefreshing;
 
 		public ICommand RefreshCommand { protected set; get; }
@@ -120,11 +108,6 @@ namespace Salarya.ViewModels
 			OnCollectionChanged(() => MensilitaViewModels);
 		}
 
-		private void _ferie_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			OnCollectionChanged(() => FerieSeriesData);
-		}
-
 		public void ApplyQueryAttributes(IDictionary<string, string> query)
 		{
 			string name = HttpUtility.UrlDecode(query["CodiceFiscale"]);
@@ -139,34 +122,13 @@ namespace Salarya.ViewModels
 			{
 				if(_currentItem != value)
 				{
-					_currentItem = value;
-					UpdateCurrentData();
+					_currentItem = value;	
 					OnPropertyChanged(nameof(CurrentItem));
 				}
 			}
 		}
 
-		public ObservableCollection<ChartDataModel> FerieSeriesData
-		{
-			get => _ferieSeriesData;
-			set
-			{
-				if (_ferieSeriesData != null)
-				{
-					_ferieSeriesData.CollectionChanged -= _ferie_CollectionChanged;
-				}
-				if (_ferieSeriesData != value)
-				{
-					_ferieSeriesData = value;
-					if (_ferieSeriesData != null)
-					{
-						_ferieSeriesData.CollectionChanged += _ferie_CollectionChanged;
-					}
-					OnPropertyChanged(nameof(FerieSeriesData));
-				}
-
-			}
-		}
+	
 
 		public bool IsRefreshing
 		{

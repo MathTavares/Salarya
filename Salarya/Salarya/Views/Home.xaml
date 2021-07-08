@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="Salarya.Views.Home" xmlns="http://xamarin.com/schemas/2014/forms"
 				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-				 xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:viewmodels="clr-namespace:Salarya.ViewModels" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-				 x:Class="Salarya.Views.Home">
-
+				 xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+				 xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+				 xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+				 xmlns:viewmodels="clr-namespace:Salarya.ViewModels" x:Name="homePage"
+				 x:DataType="viewmodels:HomeViewModel">
 	<ContentPage.BindingContext>
-		<viewmodels:HomeViewModel/>
+		<viewmodels:HomeViewModel />
 	</ContentPage.BindingContext>
 	<ContentPage.Resources>
 		<ResourceDictionary>
@@ -22,58 +24,66 @@
 				<Color>#0769AA</Color>
 				<Color>#FF0000</Color>
 			</chart:ChartColorCollection>
-			<Color x:Key="BlueG"  >black</Color>
+			<Color x:Key="BlueG">black</Color>
 		</ResourceDictionary>
 	</ContentPage.Resources>
-	<ContentPage.Content >
+	<ContentPage.Content>
 
 		<StackLayout>
-			
-			<RefreshView IsRefreshing="{Binding IsRefreshing}"
-				 Command="{Binding RefreshCommand}">
-				<CarouselView ItemsSource="{Binding MensilitaViewModels}" CurrentItem="{Binding CurrentItem, Mode=TwoWay}" x:Name="Carosel" IndicatorView="{x:Reference monkeysIndicator}">
+
+			<RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+
+				<CarouselView x:Name="Carosel"
+										CurrentItem="{Binding CurrentItem, Mode=TwoWay}"
+										IndicatorView="{x:Reference monkeysIndicator}"
+										ItemsSource="{Binding MensilitaViewModels}">
 					<CarouselView.ItemTemplate>
-						<DataTemplate>
+						<DataTemplate x:DataType="viewmodels:MensilitaViewModel">
 
 							<Grid BackgroundColor="#F0F0F0">
 								<Grid.RowDefinitions>
-									<RowDefinition Height="*"/>
-									<RowDefinition Height="*"/>
-									<RowDefinition Height="*"/>
-									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="Auto" />
 								</Grid.RowDefinitions>
 
 
-								<Frame BorderColor="#black" HasShadow="True"
-									Padding="5" Margin="5,5,5,0">
-									<Grid >
+								<Frame Margin="5,5,5,0" Padding="5" BorderColor="black" HasShadow="True">
+									<Grid>
 										<Grid.RowDefinitions>
-											<RowDefinition Height="40"/>
-											<RowDefinition Height="*"/>
-											<RowDefinition Height="*"/>
+											<RowDefinition Height="40" />
+											<RowDefinition Height="*" />
+											<RowDefinition Height="*" />
 										</Grid.RowDefinitions>
 
-										<Label Text="{Binding MeseCorrente}" Margin="20,4,0,0"  FontAttributes="Bold" TextColor="#black" FontSize="30" FontFamily="Helvetica" />
+										<Label Margin="20,4,0,0" FontAttributes="Bold" FontFamily="Helvetica" FontSize="30"
+															  Text="{Binding MeseCorrente}"
+															  TextColor="black" />
 										<Grid Grid.Row="1">
 											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="Auto"/>
-												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="*" />
 											</Grid.ColumnDefinitions>
 
-											<Label Text="Net pay" TextColor="#black" Margin="20,4,0,0" FontAttributes="Bold" FontSize="30" FontFamily="Helvetica" HorizontalOptions="Center" VerticalTextAlignment="Center" />
+											<Label Margin="20,4,0,0" FontAttributes="Bold" FontFamily="Helvetica" FontSize="30"
+																	HorizontalOptions="Center" Text="Net pay" TextColor="black" VerticalTextAlignment="Center" />
 
-											<Label Grid.Column="1" Text="{Binding StipendioNetto}" TextColor="#black" Grid.Row="0" FontAttributes="Bold" FontSize="50" FontFamily="Helvetica" HorizontalTextAlignment="End" />
+											<Label Grid.Row="0" Grid.Column="1" FontAttributes="Bold" FontFamily="Helvetica"
+																	FontSize="50" HorizontalTextAlignment="End"
+																	Text="{Binding StipendioNetto}"
+																	TextColor="black" />
 										</Grid>
 
 										<Grid Grid.Row="2">
 											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="Auto"/>
-												<ColumnDefinition Width="Auto"/>
+												<ColumnDefinition Width="Auto" />
+												<ColumnDefinition Width="Auto" />
 											</Grid.ColumnDefinitions>
 
-											<button:SfButton BackgroundColor="Transparent" CornerRadius="7" HorizontalOptions="Start" >
+											<button:SfButton BackgroundColor="Transparent" CornerRadius="7" HorizontalOptions="Start">
 												<button:SfButton.Content>
-													<Grid HeightRequest="58" WidthRequest="52" Margin="8">
+													<Grid Margin="8" HeightRequest="58" WidthRequest="52">
 														<Image Source="pdf.png" />
 													</Grid>
 												</button:SfButton.Content>
@@ -84,27 +94,23 @@
 									</Grid>
 								</Frame>
 
-								<Frame BorderColor="black" Grid.Row="1"
-					Padding="5" Margin="5,0,5,0" >
+								<Frame Grid.Row="1" Margin="5,0,5,0" Padding="5" BorderColor="black">
 									<Grid>
 
 										<Grid.ColumnDefinitions>
-											<ColumnDefinition Width="*"/>
-											<ColumnDefinition Width="*"/>
+											<ColumnDefinition Width="*" />
+											<ColumnDefinition Width="*" />
 										</Grid.ColumnDefinitions>
 
-										<!--FERIE-->
-										<Grid  >
+										<!--  FERIE  -->
+										<Grid>
 
 											<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
-													<chart:ChartTitle Text="Holidays" TextColor="black" FontSize="24" TextAlignment="Center"/>
+													<chart:ChartTitle FontSize="22" Text="Holidays" TextAlignment="Center" TextColor="black" />
 												</chart:SfChart.Title>
-												<chart:SfChart.BindingContext>
-													<viewmodels:HomeViewModel/>
-												</chart:SfChart.BindingContext>
 												<chart:SfChart.Legend>
-													<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" DockPosition="Bottom" >
+													<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" OverflowMode="Wrap">
 														<chart:ChartLegend.LabelStyle>
 
 															<chart:ChartLegendLabelStyle TextColor="Black" />
@@ -113,11 +119,14 @@
 													</chart:ChartLegend>
 												</chart:SfChart.Legend>
 												<chart:SfChart.Series>
-													<chart:DoughnutSeries ListenPropertyChange="True"  CircularCoefficient="0.9" DoughnutCoefficient="0.7"  x:Name="doughnutSeriesFerie" 
-																		 ItemsSource="{Binding FerieSeriesData, Mode=OneWay}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="True" 
-																		 StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
+													<chart:DoughnutSeries x:Name="doughnutSeriesFerie" CircularCoefficient="0.9" DoughnutCoefficient="0.7"
+																								  EnableAnimation="True" EnableDataPointSelection="False" ExplodeOnTouch="False"
+																								  ExplodeIndex="{Binding FerieVM.SelectedIndex}"
+																								  ItemsSource="{Binding FerieVM.DoughnutSeriesData}"
+																								  LegendIcon="Circle" ListenPropertyChange="True" StrokeColor="White" StrokeWidth="1"
+																								  XBindingPath="Name" YBindingPath="Value">
 														<chart:DoughnutSeries.DataMarker>
-															<chart:ChartDataMarker ShowLabel="True" >
+															<chart:ChartDataMarker ShowLabel="True">
 																<chart:ChartDataMarker.LabelStyle>
 																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Center" TextColor="Black" />
 
@@ -125,7 +134,7 @@
 															</chart:ChartDataMarker>
 														</chart:DoughnutSeries.DataMarker>
 														<chart:DoughnutSeries.ColorModel>
-															<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette1}" />
+															<chart:ChartColorModel CustomBrushes="{StaticResource ColorPalette1}" Palette="Custom" />
 														</chart:DoughnutSeries.ColorModel>
 
 													</chart:DoughnutSeries>
@@ -133,35 +142,37 @@
 											</chart:SfChart>
 										</Grid>
 
-										<!--PERMESSI-->
-										<Grid Grid.Column="1" >
-											<chart:SfChart x:Name="ChartPermessi" HorizontalOptions="Center"  VerticalOptions="FillAndExpand">
+										<!--  PERMESSI  -->
+										<Grid Grid.Column="1">
+											<chart:SfChart x:Name="ChartPermessi" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
-													<chart:ChartTitle Text="Permits" TextColor="black" FontSize="24"/>
+													<chart:ChartTitle FontSize="24" Text="Permits" TextColor="black" />
 												</chart:SfChart.Title>
-												<chart:SfChart.BindingContext>
-													<viewmodels:HomeViewModel/>
-												</chart:SfChart.BindingContext>
 												<chart:SfChart.Legend>
-													<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap" ItemMargin="4"  DockPosition="Bottom" >
+													<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" ItemMargin="4"
+																							  OverflowMode="Wrap">
 														<chart:ChartLegend.LabelStyle>
-															<chart:ChartLegendLabelStyle TextColor="Black"/>
+															<chart:ChartLegendLabelStyle TextColor="Black" />
 														</chart:ChartLegend.LabelStyle>
 													</chart:ChartLegend>
 												</chart:SfChart.Legend>
 												<chart:SfChart.Series>
-													<chart:DoughnutSeries CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.PermessiVM.SelectedIndex}" x:Name="doughnutSeriesPermessi"
-																		 ItemsSource="{Binding CurrentItem.PermessiVM.DoughnutSeriesData}" XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="True" 
-																		 StrokeWidth="1" StrokeColor="White" ExplodeOnTouch="False" EnableDataPointSelection="False">
+													<chart:DoughnutSeries x:Name="doughnutSeriesPermessi" CircularCoefficient="0.9" DoughnutCoefficient="0.7"
+																								  EnableAnimation="True" EnableDataPointSelection="False"
+																								  ExplodeIndex="{Binding PermessiVM.SelectedIndex}"
+																								  ExplodeOnTouch="False"
+																								  ItemsSource="{Binding PermessiVM.DoughnutSeriesData}"
+																								  LegendIcon="Circle" StrokeColor="White" StrokeWidth="1" XBindingPath="Name"
+																								  YBindingPath="Value">
 														<chart:DoughnutSeries.DataMarker>
 															<chart:ChartDataMarker ShowLabel="True">
 																<chart:ChartDataMarker.LabelStyle>
-																	<chart:DataMarkerLabelStyle FontSize="18" TextColor="Black" LabelPosition="Center"/>
+																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Center" TextColor="Black" />
 																</chart:ChartDataMarker.LabelStyle>
 															</chart:ChartDataMarker>
 														</chart:DoughnutSeries.DataMarker>
 														<chart:DoughnutSeries.ColorModel>
-															<chart:ChartColorModel Palette="Custom"  CustomBrushes="{StaticResource ColorPalette2}" />
+															<chart:ChartColorModel CustomBrushes="{StaticResource ColorPalette2}" Palette="Custom" />
 														</chart:DoughnutSeries.ColorModel>
 													</chart:DoughnutSeries>
 												</chart:SfChart.Series>
@@ -171,42 +182,44 @@
 									</Grid>
 								</Frame>
 
-								<Frame BorderColor="Black" Grid.Row="2"
-					Padding="5" Margin="5,0,5,5">
+								<Frame Grid.Row="2" Margin="5,0,5,5" Padding="5" BorderColor="Black">
 									<Grid>
 										<chart:SfChart x:Name="ChartStipendio" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
-
-											<chart:SfChart.BindingContext>
-												<viewmodels:HomeViewModel/>
-											</chart:SfChart.BindingContext>
 											<chart:SfChart.Legend>
-												<chart:ChartLegend IconHeight="14" IconWidth="14" OverflowMode="Wrap"  DockPosition="Bottom" >
+												<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" OverflowMode="Wrap">
 													<chart:ChartLegend.LabelStyle>
 
-														<chart:ChartLegendLabelStyle TextColor="Black"/>
+														<chart:ChartLegendLabelStyle TextColor="Black" />
 
 													</chart:ChartLegend.LabelStyle>
 												</chart:ChartLegend>
 											</chart:SfChart.Legend>
 											<chart:SfChart.Series>
-												<chart:DoughnutSeries ListenPropertyChange="True" CircularCoefficient="0.9" DoughnutCoefficient="0.7" ExplodeIndex="{Binding CurrentItem.StipendioVM.SelectedIndex}" x:Name="doughnutSeriesStipendio"
-																	 ItemsSource="{Binding CurrentItem.StipendioVM.DoughnutSeriesData}"
-															 XBindingPath="Name" YBindingPath="Value" LegendIcon="Circle" EnableAnimation="true" StrokeWidth="1" StrokeColor="White"
-															 ExplodeOnTouch="False" EnableDataPointSelection="False" TrackBorderWidth="0.1">
+												<chart:DoughnutSeries x:Name="doughnutSeriesStipendio" CircularCoefficient="9" DoughnutCoefficient="0.7"
+																							 EnableAnimation="true" EnableDataPointSelection="False"
+																							 ExplodeIndex="{Binding StipendioVM.SelectedIndex}"
+																							 ExplodeOnTouch="False"
+																							 ItemsSource="{Binding StipendioVM.DoughnutSeriesData}"
+																							 LegendIcon="Circle" ListenPropertyChange="True" StrokeColor="White" StrokeWidth="1"
+																							 TrackBorderWidth="0.1" XBindingPath="Name" YBindingPath="Value">
 													<chart:DoughnutSeries.DataMarker>
 														<chart:ChartDataMarker ShowLabel="True">
 															<chart:ChartDataMarker.LabelStyle>
-																<chart:DataMarkerLabelStyle LabelPosition="Outer" TextColor="Black" FontSize="16" LabelFormat="###,###.###€"/>
+																<chart:DataMarkerLabelStyle FontSize="16" LabelFormat="###,###.###€" LabelPosition="Outer" TextColor="Black" />
 															</chart:ChartDataMarker.LabelStyle>
 														</chart:ChartDataMarker>
 													</chart:DoughnutSeries.DataMarker>
 													<chart:DoughnutSeries.ColorModel>
-														<chart:ChartColorModel Palette="Custom" CustomBrushes="{StaticResource ColorPalette3}"/>
+														<chart:ChartColorModel CustomBrushes="{StaticResource ColorPalette3}" Palette="Custom" />
 													</chart:DoughnutSeries.ColorModel>
 													<chart:DoughnutSeries.CenterView>
-														<StackLayout x:Name="stackStipendio" Orientation ="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-															<Label Text="Gross wage" TextColor="Black" FontAttributes="Bold" FontSize="18" FontFamily="Helvetica"  HorizontalTextAlignment="Center"/>
-															<Label Text="{Binding BindingContext.CurrentItem.StipendioVM.StringSum}" TextColor="Black" FontAttributes="Bold" FontSize="16" FontFamily="Helvetica" HorizontalTextAlignment="Center"/>
+														<StackLayout x:Name="stackStipendio" HorizontalOptions="FillAndExpand" Orientation="Vertical"
+																							VerticalOptions="FillAndExpand">
+															<Label FontAttributes="Bold" FontFamily="Helvetica" FontSize="18" HorizontalTextAlignment="Center"
+																						 Text="Gross wage" TextColor="Black" />
+															<Label FontAttributes="Bold" FontFamily="Helvetica" FontSize="16" HorizontalTextAlignment="Center"
+																						 Text="{Binding StipendioVM.StringSum}"
+																						 TextColor="Black" />
 														</StackLayout>
 													</chart:DoughnutSeries.CenterView>
 												</chart:DoughnutSeries>
@@ -223,8 +236,10 @@
 				</CarouselView>
 
 			</RefreshView>
-			
-			<IndicatorView x:Name="monkeysIndicator" IndicatorColor="LightGray" SelectedIndicatorColor="Gray" MaximumVisible="12" IndicatorsShape="Square" Margin="0,10,0,10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+
+			<IndicatorView x:Name="monkeysIndicator" Margin="0,10,0,10" HorizontalOptions="FillAndExpand"
+									IndicatorColor="LightGray" IndicatorsShape="Square" MaximumVisible="12"
+									SelectedIndicatorColor="Gray" VerticalOptions="FillAndExpand" />
 		</StackLayout>
 
 	</ContentPage.Content>
