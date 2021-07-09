@@ -7,7 +7,7 @@
 				 xmlns:viewmodels="clr-namespace:Salarya.ViewModels" x:Name="homePage"
 				 x:DataType="viewmodels:HomeViewModel">
 	<ContentPage.BindingContext>
-		<viewmodels:HomeViewModel />
+		<viewmodels:HomeViewModel x:Name="viewModel" />
 	</ContentPage.BindingContext>
 	<ContentPage.Resources>
 		<ResourceDictionary>
@@ -105,12 +105,12 @@
 										<!--  FERIE  -->
 										<Grid>
 
-											<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
+											<chart:SfChart x:Name="ChartFerie" HorizontalOptions="Center" VerticalOptions="FillAndExpand" >
 												<chart:SfChart.Title>
 													<chart:ChartTitle FontSize="22" Text="Holidays" TextAlignment="Center" TextColor="black" />
 												</chart:SfChart.Title>
 												<chart:SfChart.Legend>
-													<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" OverflowMode="Wrap">
+													<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" ItemMargin="5" OverflowMode="Wrap">
 														<chart:ChartLegend.LabelStyle>
 
 															<chart:ChartLegendLabelStyle TextColor="Black" />
@@ -120,6 +120,7 @@
 												</chart:SfChart.Legend>
 												<chart:SfChart.Series>
 													<chart:DoughnutSeries x:Name="doughnutSeriesFerie" CircularCoefficient="0.9" DoughnutCoefficient="0.7"
+																				 ExplodeAll="False" ExplodeRadius="0"
 																								  EnableAnimation="True" EnableDataPointSelection="False" ExplodeOnTouch="False"
 																								  ExplodeIndex="{Binding FerieVM.SelectedIndex}"
 																								  ItemsSource="{Binding FerieVM.DoughnutSeriesData}"
@@ -146,7 +147,7 @@
 										<Grid Grid.Column="1">
 											<chart:SfChart x:Name="ChartPermessi" HorizontalOptions="Center" VerticalOptions="FillAndExpand">
 												<chart:SfChart.Title>
-													<chart:ChartTitle FontSize="24" Text="Permits" TextColor="black" />
+													<chart:ChartTitle FontSize="22" Text="Permits" TextColor="black" />
 												</chart:SfChart.Title>
 												<chart:SfChart.Legend>
 													<chart:ChartLegend DockPosition="Bottom" IconHeight="14" IconWidth="14" ItemMargin="4"
@@ -159,6 +160,7 @@
 												<chart:SfChart.Series>
 													<chart:DoughnutSeries x:Name="doughnutSeriesPermessi" CircularCoefficient="0.9" DoughnutCoefficient="0.7"
 																								  EnableAnimation="True" EnableDataPointSelection="False"
+																				 ExplodeAll="False" ExplodeRadius="0"
 																								  ExplodeIndex="{Binding PermessiVM.SelectedIndex}"
 																								  ExplodeOnTouch="False"
 																								  ItemsSource="{Binding PermessiVM.DoughnutSeriesData}"
@@ -167,7 +169,7 @@
 														<chart:DoughnutSeries.DataMarker>
 															<chart:ChartDataMarker ShowLabel="True">
 																<chart:ChartDataMarker.LabelStyle>
-																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Center" TextColor="Black" />
+																	<chart:DataMarkerLabelStyle FontSize="18" LabelPosition="Outer" TextColor="Black" />
 																</chart:ChartDataMarker.LabelStyle>
 															</chart:ChartDataMarker>
 														</chart:DoughnutSeries.DataMarker>
@@ -195,7 +197,7 @@
 												</chart:ChartLegend>
 											</chart:SfChart.Legend>
 											<chart:SfChart.Series>
-												<chart:DoughnutSeries x:Name="doughnutSeriesStipendio" CircularCoefficient="9" DoughnutCoefficient="0.7"
+												<chart:DoughnutSeries x:Name="doughnutSeriesStipendio" CircularCoefficient="0.9" DoughnutCoefficient="0.7"
 																							 EnableAnimation="true" EnableDataPointSelection="False"
 																							 ExplodeIndex="{Binding StipendioVM.SelectedIndex}"
 																							 ExplodeOnTouch="False"
@@ -213,12 +215,14 @@
 														<chart:ChartColorModel CustomBrushes="{StaticResource ColorPalette3}" Palette="Custom" />
 													</chart:DoughnutSeries.ColorModel>
 													<chart:DoughnutSeries.CenterView>
+													
 														<StackLayout x:Name="stackStipendio" HorizontalOptions="FillAndExpand" Orientation="Vertical"
 																							VerticalOptions="FillAndExpand">
-															<Label FontAttributes="Bold" FontFamily="Helvetica" FontSize="18" HorizontalTextAlignment="Center"
+															
+															<Label FontAttributes="Bold" FontFamily="Helvetica" FontSize="16" HorizontalTextAlignment="Center"
 																						 Text="Gross wage" TextColor="Black" />
 															<Label FontAttributes="Bold" FontFamily="Helvetica" FontSize="16" HorizontalTextAlignment="Center"
-																						 Text="{Binding StipendioVM.StringSum}"
+																						 Text="{Binding CurrentItem.StipendioVM.StringSum, Source={x:Reference viewModel}, Mode=OneWay}"
 																						 TextColor="Black" />
 														</StackLayout>
 													</chart:DoughnutSeries.CenterView>

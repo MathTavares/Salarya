@@ -73,8 +73,8 @@ namespace Salarya.ViewModels
 				selectedIndex = value;
 				if (selectedIndex == -1) return;
 
-				if (DoughnutSeriesData?.Any() == true)
-				{
+				//if (DoughnutSeriesData?.Any() == true)
+				//{
 					SelectedItemName = DoughnutSeriesData[selectedIndex].Name;
 
 					Sum = DoughnutSeriesData.Sum(item => item.Value);
@@ -83,7 +83,7 @@ namespace Salarya.ViewModels
 
 					SelectedItemsPercentage = selectedValue / Sum * 100;
 					SelectedItemsPercentage = Math.Floor(SelectedItemsPercentage * 100) / 100;
-				}
+				//}
 				
 			}
 		}
